@@ -3,11 +3,9 @@
 Super simple upload tool for BinTray Debian packages. Requires environment
 variables and command line arguments, although it can also derive some
 information from a fairly standard package name. Pretty much a wrapper for
-a single cURL command.
+a single HTTP PUT operation.
 
 ## Installation
-
-This requires cURL installed on the machine.
 
 ```bash
 pip install bintray-upload
