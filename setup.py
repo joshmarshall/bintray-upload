@@ -3,7 +3,7 @@ import setuptools
 
 setuptools.setup(
     name="bintray-upload",
-    version="0.1.1",
+    version="0.1.2",
     description="Simple BinTray utility for uploading Debian packages.",
     author="Josh Marshall",
     author_email="catchjosh@gmail.com",

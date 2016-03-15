@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+
+from __future__ import print_function
+
 import argparse
 import os
 import os.path
@@ -55,14 +58,17 @@ def main():
         # trying to determine name and version from
         base, _ = os.path.splitext(basename)
         base, arch = base.rsplit("_", 1)
+        arch = args.architecture or arch
         if arch not in ALLOWED_ARCH:
             raise ValueError("Architecture {0} not discoverable".format(arch))
         name, version = base.split("_", 1)
+        name = args.name or name
+        version = args.version or version
         if not VERSION_RE.match(version):
             raise ValueError("Version not discoverable ({0})".format(version))
-        args.version = args.version or version
-        args.architecture = args.architecture or arch
-        args.name = args.name or name
+        args.version = version
+        args.architecture = arch
+        args.name = name
 
     url = "{url}/{a.org}/{a.repo}/{a.name}/{a.version}/pool/{a.component}" \
         "/{a.name[0]}/{basename}?publish=1".format(
@@ -92,7 +98,7 @@ def main():
             "Failed to submit package: {0}\n{1}".format(
                 response.status_code, response.text))
 
-    print "Submitted successfully."
+    print("Submitted successfully.")
 
 
 if __name__ == "__main__":
